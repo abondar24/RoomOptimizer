@@ -19,7 +19,12 @@ public class Optimizer {
             return new ArrayList<>();
         }
 
-        res.getRooms().forEach(r-> allocs.add(optimizeSingleRoom(r,res.getSenior(),res.getJunior())));
+        res.getRooms().forEach(r-> {
+            if (r<100) {
+                allocs.add(optimizeSingleRoom(r, res.getSenior(), res.getJunior()));
+            }
+                }
+        );
         return allocs;
     }
 

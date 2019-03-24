@@ -16,6 +16,16 @@ public class OptimizerTest {
     private Optimizer optimizer = new Optimizer();
 
     @Test
+    public void optmizerTooBigStructTest() {
+
+        Resource res = new Resource(Arrays.asList(new Integer[120]), 14, 6);
+        List<Allocation> alloc = optimizer.optimize(res);
+
+        assertEquals(0, alloc.size());
+
+    }
+
+    @Test
     public void optmizerTooManyRoomsTest() {
 
         Resource res = new Resource(Arrays.asList(new Integer[120]), 14, 6);
@@ -27,11 +37,10 @@ public class OptimizerTest {
 
     @Test
     public void optimizerFullSeniorTest() {
-        Resource res = new Resource(Collections.singletonList(28), 14, 6);
+        Resource res = new Resource(Collections.singletonList(100), 14, 6);
         List<Allocation> alloc = optimizer.optimize(res);
 
-        assertEquals(2, alloc.get(0).getSenior());
-        assertEquals(0, alloc.get(0).getJunior());
+        assertEquals(0, alloc.size());
     }
 
     @Test
