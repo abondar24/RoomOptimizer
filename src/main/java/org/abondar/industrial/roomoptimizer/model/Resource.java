@@ -4,24 +4,24 @@ import java.util.List;
 
 public class Resource {
 
-    private List<Integer> room;
+    private List<Integer> rooms;
     private int senior;
     private int junior;
 
     public Resource(){}
 
-    public Resource(List<Integer> room, int senior, int junior) {
-        this.room = room;
+    public Resource(List<Integer> rooms, int senior, int junior) {
+        this.rooms = rooms;
         this.senior = senior;
         this.junior = junior;
     }
 
-    public List<Integer> getRoom() {
-        return room;
+    public List<Integer> getRooms() {
+        return rooms;
     }
 
-    public void setRoom(List<Integer> room) {
-        this.room = room;
+    public void setRooms(List<Integer> rooms) {
+        this.rooms = rooms;
     }
 
     public int getSenior() {
@@ -43,7 +43,7 @@ public class Resource {
     @Override
     public String toString() {
         return "Resource{" +
-                "room=" + room +
+                "rooms=" + rooms +
                 ", senior=" + senior +
                 ", junior=" + junior +
                 '}';

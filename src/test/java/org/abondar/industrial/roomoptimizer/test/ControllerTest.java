@@ -38,7 +38,7 @@ public class ControllerTest {
     @Autowired
     private WebApplicationContext context;
 
-   // @Autowired
+
     private MockMvc mockMvc;
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
