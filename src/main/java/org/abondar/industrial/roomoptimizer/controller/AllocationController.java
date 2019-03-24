@@ -1,5 +1,6 @@
 package org.abondar.industrial.roomoptimizer.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.abondar.industrial.roomoptimizer.Optimizer;
 import org.abondar.industrial.roomoptimizer.model.Allocation;
 import org.abondar.industrial.roomoptimizer.model.Resource;
@@ -36,7 +37,7 @@ public class AllocationController {
 
 
         if (resource.getRooms().size() > 100) {
-            return new ResponseEntity("Too big structure", HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new ObjectMapper().writeValueAsString("Too big structure"), HttpStatus.NOT_FOUND);
         }
 
         List<Allocation> alloc = optimizer.optimize(resource);
