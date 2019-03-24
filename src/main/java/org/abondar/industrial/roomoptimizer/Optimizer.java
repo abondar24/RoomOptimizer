@@ -15,10 +15,6 @@ public class Optimizer {
     public List<Allocation> optimize(Resource res){
         List<Allocation> allocs = new ArrayList<>();
 
-        if (res.getRooms().size()>100){
-            return new ArrayList<>();
-        }
-
         res.getRooms().forEach(r-> {
             if (r<100) {
                 allocs.add(optimizeSingleRoom(r, res.getSenior(), res.getJunior()));

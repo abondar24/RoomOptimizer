@@ -19,6 +19,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -60,9 +62,30 @@ public class ControllerTest {
                 .contentType(contentType)
                 .content(content))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", notNullValue()));
+                .andExpect(jsonPath("$", hasSize(3)))
+                .andExpect(jsonPath("$[0].senior", is(2)))
+                .andExpect(jsonPath("$[0].junior", is(0)))
+                .andExpect(jsonPath("$[1].senior", is(1)))
+                .andExpect(jsonPath("$[1].junior", is(0)))
+                .andExpect(jsonPath("$[2].senior", is(1)))
+                .andExpect(jsonPath("$[2].junior", is(1)));
+
     }
 
+
+
+    @Test
+    public void testAllocationError() throws Exception {
+        logger.info("Allocation api test");
+
+        String content = om.writeValueAsString(new Resource(Arrays.asList(new Integer[150]),5,1));
+        mockMvc.perform(
+                post("/allocate/resources")
+                        .contentType(contentType)
+                        .content(content))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$", notNullValue()));
+    }
 
 
 }
